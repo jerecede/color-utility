@@ -81,8 +81,13 @@ class UColor {
 
     }
 
-    /* The `toHEX()` method used to convert the RGB color values of an
-    instance of `UColor` into a hexadecimal color representation. Here's how it works: */
+    /**
+     * The `toHEX` function converts RGB and alpha values to a string hexadecimal color representation.
+     * @returns {string} The `toHEX()` function is returning a string hexadecimal representation of the color values
+     * stored in the object. If the alpha value (`a`) is equal to 1, it returns the hexadecimal
+     * representation of the RGB values (`r`, `g`, `b`) without the alpha channel. If the alpha value
+     * is not 1, it includes the alpha channel in the hexadecimal representation.
+     */
     toHEX() {
         const decToHex = dec => dec.toString(16).padStart(2, '0');
         const rHex = decToHex(this.r);
@@ -98,17 +103,20 @@ class UColor {
    /**
     * The `toRGBA()` function converts the RGB values of an object to a string representation in RGBA
     * format.
-    * @returns The `toRGBA()` method is returning a string in the format `rgba(r, g, b, a)` where `r`,
+    * @returns {string} The `toRGBA()` method is returning a string in the format `rgba(r, g, b, a)` where `r`,
     * `g`, `b`, and `a` are the values of the red, green, blue, and alpha components respectively.
     */
     toRGBA() {
         return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`; 
     }
 
-    g/* The `getGrayScale()` method in the `UColor` class is a function that calculates the grayscale
-    equivalent of a color. It uses a weighted average formula to convert the RGB color values of
-    the current `UColor` object into a single grayscale value. */
-    etGrayScale() {
+    /**
+     * The `getGrayScale` function calculates the grayscale value of a color based on its RGB
+     * components.
+     * @returns {UColor} The `getGrayScale()` function returns a new `UColor` object with the RGB values set to
+     * the calculated grayscale value and the alpha value unchanged.
+     */
+    getGrayScale() {
         const gray = Math.round((this.r * 0.299) + (this.g * 0.587) + (this.b * 0.114));
         return new UColor(gray, gray, gray, this.a); 
     }
@@ -117,7 +125,7 @@ class UColor {
      * The function `getContrastColor` converts an RGB color to HSL, finds the complementary color by
      * adjusting the hue, and then converts it back to RGB while maintaining the same transparency
      * level.
-     * @returns The `getContrastColor()` function is returning a new color with the same level of
+     * @returns {UColor} The `getContrastColor()` function is returning a new color with the same level of
      * transparency as the original color, but with a complementary hue. The function first converts
      * the original color from RGB to HSL, then finds the complementary color by shifting the hue by
      * 180 degrees. Finally, it converts the complementary HSL color back to RGB and creates a new
@@ -141,7 +149,7 @@ class UColor {
     /**
      * The function `getPalette` generates a color palette by converting a base color from RGB to HSL,
      * then creating two additional colors with hues 120 degrees and 240 degrees apart.
-     * @returns The `getPalette()` function is returning an array with three elements:
+     * @returns {[UColor]} The `getPalette()` function is returning an array with three elements:
      * 1. The original color object (`this`)
      * 2. A new color object representing the second color in the triadic color scheme (obtained by
      * shifting the hue by 120 degrees)
@@ -168,10 +176,11 @@ class UColor {
         ];
     }
 
-
-/* The `rgbToHsl()` function in the `UColor` class is responsible for converting RGB color values to
-their corresponding HSL (Hue, Saturation, Lightness) representation. Here's a breakdown of what the
-function does: */
+/**
+ * The function `rgbToHsl()` converts RGB color values to HSL color values in JavaScript.
+ * @returns {object} The function `rgbToHsl()` returns an object with three properties: `h` for hue, `s` for
+ * saturation, and `l` for lightness.
+ */
 // Converti RGB in HSL
 rgbToHsl() {
     let r = this.r / 255;
@@ -196,13 +205,25 @@ rgbToHsl() {
     return { h, s, l };
 }
 
-
-
-
-/* The `hslToRgb` function in the `UColor` class is responsible for converting HSL (Hue, Saturation,
-Lightness) color values to their corresponding RGB representation. Here's a breakdown of what the
-function does: */
 // Converti HSL in RGB
+
+    /**
+     * The function `hslToRgb` converts HSL (Hue, Saturation, Lightness) color values to RGB (Red,
+     * Green, Blue) color values.
+     * @param {number} h - The `h` parameter in the `hslToRgb` function represents the hue value of the color in
+     * the HSL (Hue, Saturation, Lightness) color model. Hue is the attribute of a color by virtue of
+     * which it is discernible as red, green, blue,
+     * @param {number} s - The parameter `s` in the `hslToRgb` function represents the saturation value in the
+     * HSL (Hue, Saturation, Lightness) color model. Saturation determines the intensity or purity of a
+     * color. A saturation value of 0 results in a grayscale color (no color
+     * @param {number} l - The `l` parameter in the `hslToRgb` function represents the lightness value in the
+     * HSL (Hue, Saturation, Lightness) color model. It determines how light or dark the color is. In
+     * the function, it is used to calculate the RGB values based on
+     * @returns {object} The function `hslToRgb(h, s, l)` returns an object with the RGB values calculated based
+     * on the input HSL values. The object has properties `r`, `g`, and `b`, representing the red,
+     * green, and blue values respectively. These values are rounded to the nearest integer after being
+     * multiplied by 255.
+     */
     hslToRgb(h, s, l) {
         let r, g, b;
 
@@ -233,12 +254,12 @@ function does: */
 
 
 
-const ucolor1 = new UColor(12, 34, 27);
-const ucolor2 = UColor.fromHEX('#ff340031');
-const ucolor3 = UColor.random()
-const ucolor4 = UColor.fromRGBA('rgba(255,161,12,0.5)')
-const ucolor5 = UColor.fromRGBA('rgb(255,161,12)')
-const ucolor6 = UColor.fromRGBA('rgb(255,161,12,0.8)')
+// const ucolor1 = new UColor(12, 34, 27);
+// const ucolor2 = UColor.fromHEX('#ff340031');
+// const ucolor3 = UColor.random()
+// const ucolor4 = UColor.fromRGBA('rgba(255,161,12,0.5)')
+// const ucolor5 = UColor.fromRGBA('rgb(255,161,12)')
+// const ucolor6 = UColor.fromRGBA('rgb(255,161,12,0.8)')
 
 
 // console.log(ucolor2.toHEX())//'#ff3400'
